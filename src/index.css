@@ -2,41 +2,59 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* AI Agent Builder Design System - Modern, Tech-Forward AI Theme */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* AI-themed color palette */
+    --background: 230 25% 8%;
+    --foreground: 228 20% 95%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 230 20% 10%;
+    --card-foreground: 228 15% 92%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 230 20% 12%;
+    --popover-foreground: 228 15% 92%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 264 85% 70%;
+    --primary-foreground: 230 25% 8%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 230 15% 15%;
+    --secondary-foreground: 228 15% 85%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 230 15% 12%;
+    --muted-foreground: 228 10% 65%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 285 75% 65%;
+    --accent-foreground: 230 25% 8%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 75% 65%;
+    --destructive-foreground: 228 20% 95%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 230 15% 18%;
+    --input: 230 15% 15%;
+    --ring: 264 85% 70%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* AI-specific design tokens */
+    --ai-primary: 264 85% 70%;
+    --ai-secondary: 285 75% 65%;
+    --ai-glow: 264 100% 80%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--ai-primary)), hsl(var(--ai-secondary)));
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(230 20% 12%));
+    --gradient-glow: linear-gradient(135deg, hsl(264 85% 70% / 0.2), hsl(285 75% 65% / 0.2));
+    
+    /* Shadows */
+    --shadow-ai: 0 10px 40px -10px hsl(var(--ai-primary) / 0.3);
+    --shadow-glow: 0 0 30px hsl(var(--ai-glow) / 0.4);
+    --shadow-card: 0 4px 20px -2px hsl(230 25% 5% / 0.4);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +118,46 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+    background: var(--gradient-subtle);
+  }
+}
+
+@layer components {
+  /* AI Pipeline Step */
+  .pipeline-step {
+    @apply relative rounded-xl border border-border bg-card p-6;
+    background: linear-gradient(135deg, hsl(var(--card)), hsl(230 15% 12%));
+    box-shadow: var(--shadow-card);
+    transition: var(--transition-smooth);
+  }
+
+  .pipeline-step:hover {
+    border-color: hsl(var(--ai-primary) / 0.5);
+    box-shadow: var(--shadow-ai);
+    transform: translateY(-2px);
+  }
+
+  /* AI Glow Effect */
+  .ai-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Pipeline Connection Line */
+  .pipeline-connector {
+    @apply absolute left-1/2 h-8 w-px bg-gradient-to-b from-transparent via-border to-transparent;
+    transform: translateX(-50%);
+    top: 100%;
+  }
+
+  /* Animated Background */
+  .animated-bg {
+    background: var(--gradient-glow);
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.1; }
+    50% { opacity: 0.3; }
   }
 }
